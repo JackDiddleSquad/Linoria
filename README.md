@@ -1,1 +1,1 @@
-# Linoria
+# Bypassed Linoria (Bypasses CoreGui Detections)
