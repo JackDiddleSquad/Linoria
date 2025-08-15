@@ -261,9 +261,6 @@ local SaveManager = {} do
 			self.Library:Notify(string.format('deleted config %q', name))
 		end)
 
-
-		SaveManager.AutoloadLabel = section:AddLabel('Current autoload config: none', true)
-
 		if isfile(self.Folder .. '/settings/autoload.txt') then
 			local name = readfile(self.Folder .. '/settings/autoload.txt')
 			SaveManager.AutoloadLabel:SetText('Current autoload config: ' .. name)
