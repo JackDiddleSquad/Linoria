@@ -3049,7 +3049,7 @@ function Library:CreateWindow(...)
         HorizontalAlignment = Enum.HorizontalAlignment.Center;
 		VerticalAlignment = Enum.VerticalAlignment.Center;
         SortOrder = Enum.SortOrder.LayoutOrder;
-		CellSize = UDim2.new(1,0,0,20);
+		CellSize = UDim2.new(1,0,0,21);
         Parent = TabArea;
     });
 
