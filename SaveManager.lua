@@ -252,7 +252,7 @@ local SaveManager = {} do
 			local name = Options.SaveManager_ConfigList.Value
 
 			local success, err = pcall(function()
-				delfile(self.folder[name])
+				delfile(self.folder[name] .. ".json")
 			end)
 			if not success then
 				return self.Library:Notify('failed to delete config: ' .. err)
