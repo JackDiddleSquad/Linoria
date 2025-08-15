@@ -3053,6 +3053,18 @@ function Library:CreateWindow(...)
         Parent = TabArea;
     });
 
+	local function update()
+		local c = 0
+		for i,v in ipairs(TabArea:GetChildren()) do
+		    if v:IsA("Frame") then
+		        c += 1
+		    end
+		end
+		if c > 0 then
+		    grid.CellSize = UDim2.new(1 / c, 0, 0, 20)
+		end
+	end
+	
     local TabContainer = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
@@ -3124,6 +3136,8 @@ function Library:CreateWindow(...)
             ZIndex = 2;
             Parent = TabContainer;
         });
+
+		update()
 
         local LeftSide = Library:Create('ScrollingFrame', {
             BackgroundTransparency = 1;
