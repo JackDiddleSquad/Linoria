@@ -3061,7 +3061,7 @@ function Library:CreateWindow(...)
 		    end
 		end
 		if c > 0 then
-		    TabListLayout.CellSize = UDim2.new(1 / c, 0, 0, 20)
+		    TabListLayout.CellSize = UDim2.new(0.98 / c, -1, 0, 20)
 		end
 	end
 	
