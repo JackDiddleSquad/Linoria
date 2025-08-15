@@ -3350,7 +3350,7 @@ function Library:CreateWindow(...)
                 HorizontalAlignment = Enum.HorizontalAlignment.Center;
 				VerticalAlignment = Enum.HorizontalAlignment.Center;
                 SortOrder = Enum.SortOrder.LayoutOrder;
-				CellSize = UDim2.new(1,0,0,20)
+				CellSize = UDim2.new(1,0,0,20);
                 Parent = TabboxButtons;
             });
 
