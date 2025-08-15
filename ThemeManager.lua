@@ -53,7 +53,7 @@ local ThemeManager = {} do
 	end
 
 	function ThemeManager:LoadDefault()		
-		self:ApplyTheme("theme")
+		self:ApplyTheme(cfgfile .. "/themes/theme.json")
 	end
 
 	function ThemeManager:SaveDefault(theme)
