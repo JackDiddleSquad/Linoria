@@ -12,6 +12,7 @@ local ThemeManager = {} do
 	if not isfile(ThemeManager.Folder .. "/themes/default.txt") then
 		writefile(ThemeManager.Folder .. "/themes/default.txt", "theme")
 	end
+	task.wait(1) -- let the frickin shi write
 	
 	-- if not isfolder(ThemeManager.Folder) then makefolder(ThemeManager.Folder) end
 
