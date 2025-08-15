@@ -2959,6 +2959,13 @@ function Library:CreateWindow(...)
         Config.Position = UDim2.fromScale(0.5, 0.5)
     end
 
+	if not isfile(Config.File .. "/themes/theme.json") then
+		writefile(Config.File .. "/themes/theme.json", [==[{"MainColor":"0b0c15","AccentColor":"78779d","OutlineColor":"323232","BackgroundColor":"07080e","FontColor":"ffffff"}]==])
+	end
+	if not isfile(Config.File .. "/themes/default.txt") then
+		writefile(Config.File .. "/themes/default.txt", "theme")
+	end
+	
     local Window = {
         Tabs = {};
     };
