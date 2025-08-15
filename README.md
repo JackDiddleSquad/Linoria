@@ -1,6 +1,6 @@
 # Custom Linoria
 
-# New Tabs
+New Tabs
 # Changed Themes
 # Changed Configs
 # Changed Menu Label
