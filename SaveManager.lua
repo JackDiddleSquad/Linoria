@@ -208,7 +208,7 @@ local SaveManager = {} do
 		local section = tab:AddRightGroupbox('config')
 
 		section:AddDropdown('SaveManager_ConfigList', { Text = 'list', Values = self:RefreshConfigList(), AllowNull = true })
-		section:AddInput('SaveManager_ConfigName',    { Text = nil })
+		section:AddInput('SaveManager_ConfigName',    { Text = 'name' })
 
 		section:AddDivider()
 
