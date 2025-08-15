@@ -53,8 +53,8 @@ local ThemeManager = {} do
 	end
 
 	function ThemeManager:LoadDefault()		
-		self:ApplyTheme("theme") 
-		print("1")
+		self:ApplyTheme("theme.json") 
+		print("2")
 	end
 
 	function ThemeManager:SaveDefault(theme)
