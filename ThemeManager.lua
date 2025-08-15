@@ -5,13 +5,6 @@ end
 local httpService = RefService('HttpService')
 local ThemeManager = {} do
 	ThemeManager.Folder = cfgfile or "phasahook"
-
-	if not isfile(ThemeManager.Folder .. "/themes/theme.json") then
-		writefile(ThemeManager.Folder .. "/themes/theme.json", [==[{"MainColor":"0b0c15","AccentColor":"78779d","OutlineColor":"323232","BackgroundColor":"07080e","FontColor":"ffffff"}]==])
-	end
-	if not isfile(ThemeManager.Folder .. "/themes/default.txt") then
-		writefile(ThemeManager.Folder .. "/themes/default.txt", "theme")
-	end
 	task.wait(1) -- let the frickin shi write
 	
 	-- if not isfolder(ThemeManager.Folder) then makefolder(ThemeManager.Folder) end
