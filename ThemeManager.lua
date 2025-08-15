@@ -104,10 +104,6 @@ local ThemeManager = {} do
 			end
 		end)
 
-		Options.ThemeManager_ThemeList:OnChanged(function()
-			self:ApplyTheme(Options.ThemeManager_ThemeList.Value)
-		end)
-
 		ThemeManager:LoadDefault()
 
 		local function UpdateTheme()
