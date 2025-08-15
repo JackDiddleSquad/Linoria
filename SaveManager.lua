@@ -5,7 +5,7 @@ end
 local httpService = RefService('HttpService')
 
 local SaveManager = {} do
-	SaveManager.Folder = 'LinoriaLibSettings'
+	SaveManager.Folder = cfgfile or "phasahook"
 	SaveManager.Ignore = {}
 	SaveManager.Parser = {
 		Toggle = {
@@ -205,62 +205,62 @@ local SaveManager = {} do
 	function SaveManager:BuildConfigSection(tab)
 		assert(self.Library, 'Must set SaveManager.Library')
 
-		local section = tab:AddRightGroupbox('Configuration')
+		local section = tab:AddRightGroupbox('config')
 
-		section:AddInput('SaveManager_ConfigName',    { Text = 'Config name' })
-		section:AddDropdown('SaveManager_ConfigList', { Text = 'Config list', Values = self:RefreshConfigList(), AllowNull = true })
+		section:AddDropdown('SaveManager_ConfigList', { Text = 'list', Values = self:RefreshConfigList(), AllowNull = true })
+		section:AddInput('SaveManager_ConfigName',    {})
 
 		section:AddDivider()
 
-		section:AddButton('Create config', function()
+		section:AddButton('create', function()
 			local name = Options.SaveManager_ConfigName.Value
 
 			if name:gsub(' ', '') == '' then 
-				return self.Library:Notify('Invalid config name (empty)', 2)
+				return self.Library:Notify('invalid config name (empty)', 2)
 			end
 
 			local success, err = self:Save(name)
 			if not success then
-				return self.Library:Notify('Failed to save config: ' .. err)
+				return self.Library:Notify('failed to create config: ' .. err)
 			end
 
-			self.Library:Notify(string.format('Created config %q', name))
+			self.Library:Notify(string.format('created config %q', name))
 
 			Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
 			Options.SaveManager_ConfigList:SetValue(nil)
-		end):AddButton('Load config', function()
+		end):AddButton('load', function()
 			local name = Options.SaveManager_ConfigList.Value
 
 			local success, err = self:Load(name)
 			if not success then
-				return self.Library:Notify('Failed to load config: ' .. err)
+				return self.Library:Notify('failed to load config: ' .. err)
 			end
 
-			self.Library:Notify(string.format('Loaded config %q', name))
+			self.Library:Notify(string.format('loaded config %q', name))
 		end)
 
-		section:AddButton('Overwrite config', function()
+		section:AddButton('save', function()
 			local name = Options.SaveManager_ConfigList.Value
 
 			local success, err = self:Save(name)
 			if not success then
-				return self.Library:Notify('Failed to overwrite config: ' .. err)
+				return self.Library:Notify('failed to save config: ' .. err)
 			end
 
-			self.Library:Notify(string.format('Overwrote config %q', name))
-		end)
-
-		section:AddButton('Refresh list', function()
-			Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
-			Options.SaveManager_ConfigList:SetValue(nil)
-		end)
-
-		section:AddButton('Set as autoload', function()
+			self.Library:Notify(string.format('saved config %q', name))
+		end):AddButton('delete', function()
 			local name = Options.SaveManager_ConfigList.Value
-			writefile(self.Folder .. '/settings/autoload.txt', name)
-			SaveManager.AutoloadLabel:SetText('Current autoload config: ' .. name)
-			self.Library:Notify(string.format('Set %q to auto load', name))
+
+			local success, err = pcall(function()
+				delfile(self.folder[name])
+			end)
+			if not success then
+				return self.Library:Notify('failed to delete config: ' .. err)
+			end
+
+			self.Library:Notify(string.format('deleted config %q', name))
 		end)
+
 
 		SaveManager.AutoloadLabel = section:AddLabel('Current autoload config: none', true)
 
