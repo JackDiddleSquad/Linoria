@@ -3001,7 +3001,8 @@ function Library:CreateWindow(...)
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
         Size = UDim2.new(0, 0, 0, 25);
-        Text = Config.Title or '';
+        Text = Config.Title .. os.date("%b %d %Y") or '';
+		RichText = true;
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 1;
         Parent = Inner;
