@@ -3044,11 +3044,13 @@ function Library:CreateWindow(...)
         Parent = MainSectionInner;
     });
 
-    local TabListLayout = Library:Create('UIListLayout', {
-        Padding = UDim.new(0, Config.TabPadding);
-        FillDirection = Enum.FillDirection.Horizontal;
+    local TabListLayout = Library:Create('UIGridLayout', {
+        FillDirection = Enum.FillDirection.Vertical;
+        HorizontalAlignment = Enum.HorizontalAlignment.Center;
+		VerticalAlignment = Enum.HorizontalAlignment.Center;
         SortOrder = Enum.SortOrder.LayoutOrder;
-        Parent = TabArea;
+		CellSize = UDim2.new(1,0,0,20);
+        Parent = TabboxButtons;
     });
 
     local TabContainer = Library:Create('Frame', {
@@ -3345,12 +3347,12 @@ function Library:CreateWindow(...)
                 Parent = BoxInner;
             });
 
-            -- Library:Create('UIListLayout', {
-            --     FillDirection = Enum.FillDirection.Horizontal;
-            --     HorizontalAlignment = Enum.HorizontalAlignment.Left;
-            --     SortOrder = Enum.SortOrder.LayoutOrder;
-            --     Parent = TabboxButtons;
-            -- });
+            Library:Create('UIListLayout', {
+                FillDirection = Enum.FillDirection.Horizontal;
+                HorizontalAlignment = Enum.HorizontalAlignment.Left;
+                SortOrder = Enum.SortOrder.LayoutOrder;
+                Parent = TabboxButtons;
+            });
 			
             function Tabbox:AddTab(Name)
                 local Tab = {};
