@@ -3050,7 +3050,7 @@ function Library:CreateWindow(...)
 		VerticalAlignment = Enum.VerticalAlignment.Center;
         SortOrder = Enum.SortOrder.LayoutOrder;
 		CellSize = UDim2.new(1,0,0,20);
-        Parent = TabboxButtons;
+        Parent = TabArea;
     });
 
     local TabContainer = Library:Create('Frame', {
