@@ -3001,7 +3001,7 @@ function Library:CreateWindow(...)
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
         Size = UDim2.new(0, 0, 0, 25);
-        Text = Config.Title .. os.date("%b %d %Y") or '';
+        Text = Config.Title .. " - " .. os.date("%b %d %Y") or '';
 		RichText = true;
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 1;
@@ -3345,13 +3345,27 @@ function Library:CreateWindow(...)
                 Parent = BoxInner;
             });
 
-            Library:Create('UIListLayout', {
-                FillDirection = Enum.FillDirection.Horizontal;
-                HorizontalAlignment = Enum.HorizontalAlignment.Left;
+            local grid = Library:Create('UIGridLayout', {
+                FillDirection = Enum.FillDirection.Vertical;
+                HorizontalAlignment = Enum.HorizontalAlignment.Center;
+				VerticalAlignment = Enum.HorizontalAlignment.Center;
                 SortOrder = Enum.SortOrder.LayoutOrder;
+				CellSize = UDim2.new(1,0,0,20)
                 Parent = TabboxButtons;
             });
 
+			local function update()
+			    local c = 0
+			    for i,v in ipairs(TabboxButtons:GetChildren()) do
+			        if v:IsA("Frame") then
+			            c += 1
+			        end
+			    end
+			    if c > 0 then
+			        grid.CellSize = UDim2.new(1 / c, 0, 0, 20)
+			    end
+			end
+			
             function Tabbox:AddTab(Name)
                 local Tab = {};
 
@@ -3362,6 +3376,8 @@ function Library:CreateWindow(...)
                     ZIndex = 6;
                     Parent = TabboxButtons;
                 });
+
+				update()
 
                 Library:AddToRegistry(Button, {
                     BackgroundColor3 = 'MainColor';
