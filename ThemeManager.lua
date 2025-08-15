@@ -94,14 +94,10 @@ local ThemeManager = {} do
 		table.sort(ThemesArray, function(a, b) return self.BuiltInThemes[a][1] < self.BuiltInThemes[b][1] end)
 
 		groupbox:AddButton('save', function()
-			self:SaveCustomTheme(Options.ThemeManager_CustomThemeName.Value)
-			Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
-			Options.ThemeManager_CustomThemeList:SetValue(nil)
+			self:SaveCustomTheme("Theme")
 				
-			if Options.ThemeManager_CustomThemeList.Value ~= nil and Options.ThemeManager_CustomThemeList.Value ~= '' then
-				self:SaveDefault(Options.ThemeManager_CustomThemeList.Value)
-				self.Library:Notify(string.format('Set default theme to %q', Options.ThemeManager_CustomThemeList.Value))
-			end
+			self:SaveDefault("Theme")
+			self.Library:Notify("saved theme")
 		end)
 
 		ThemeManager:LoadDefault()
